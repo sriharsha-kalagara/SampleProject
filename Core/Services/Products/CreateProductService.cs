@@ -3,6 +3,7 @@ using Common;
 using Core.Factories;
 using Data.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Services.Products
 {
@@ -24,10 +25,11 @@ namespace Core.Services.Products
 
         public Product Create(Guid id, string name, string description,
            decimal price, long quantity,
-           DateTime availableFrom, DateTime availableTo)
+           DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags)
         {
             var proudct = _productFactory.Create(id);
-            _updateProductService.Update(proudct, name, description, price, quantity, availableFrom, availableTo);
+            _updateProductService.Update
+                (proudct, name, description, price, quantity, availableFrom, availableTo, tags);
             _productsRepository.Save(proudct);
             return proudct;
         }

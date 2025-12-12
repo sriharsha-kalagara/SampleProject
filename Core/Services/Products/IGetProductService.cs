@@ -7,7 +7,7 @@ namespace Core.Services.Products
 {
     public interface IGetProductService
     {
-        Product GetUser(Guid id);
+        Product Get(Guid id);
 
         IEnumerable<Product> GetAll();
     }

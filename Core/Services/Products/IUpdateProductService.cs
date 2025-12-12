@@ -9,7 +9,6 @@ namespace Core.Services.Products
     {
         void Update(Product product, string name, string description,
            decimal price, long quantity,
-           DateTime availableFrom, DateTime availableTo
-           );
+           DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags);
     }
 }

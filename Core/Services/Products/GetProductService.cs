@@ -20,7 +20,7 @@ namespace Core.Services.Products
             return _productsRepository.GetAll();
         }
 
-        Product IGetProductService.GetUser(Guid id)
+        Product IGetProductService.Get(Guid id)
         {
             return _productsRepository.Get(id);
         }

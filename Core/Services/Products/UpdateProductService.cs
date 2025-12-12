@@ -1,6 +1,7 @@
 ﻿using BusinessEntities;
 using Common;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Services.Products
 {
@@ -9,7 +10,7 @@ namespace Core.Services.Products
     {
         public void Update(Product product, string name, string description, 
             decimal price, long quantity, 
-            DateTime availableFrom, DateTime availableTo
+            DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags
             )
         {
             product.SetName(name);
@@ -17,6 +18,7 @@ namespace Core.Services.Products
             product.SetPrice(price);
             product.SetStock(quantity);
             product.SetAvailability (availableFrom, availableTo);
+            product.SetTags(Tags);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.Extensions;
+using System;
+using System.Collections.Generic;
 
 namespace BusinessEntities
 {
@@ -9,8 +11,8 @@ namespace BusinessEntities
         private long _stock;
         private DateTime? _availableFrom;
         private DateTime? _availableTo;
-        private ProductGraphics[] _graphics = Array.Empty<ProductGraphics>();
-        private ProductMetaData[] _metaData = Array.Empty<ProductMetaData>();
+        private List<ProductGraphics> _graphics = new List<ProductGraphics>();
+        private readonly List<string> _tags = new List<string>();
 
         public string Description
         {
@@ -41,15 +43,15 @@ namespace BusinessEntities
             private set => _availableTo = value;
         }
 
-        public ProductGraphics[] Graphics {
-            get => _graphics;
-            private set => _graphics = value;
+        public IEnumerable<string> Tags
+        {
+            get => _tags;
+            private set => _tags.Initialize(value);
         }
 
-        public ProductMetaData[] MetaData
-        {
-            get => _metaData;
-            private set => _metaData = value;
+        public List<ProductGraphics> Graphics {
+            get => _graphics;
+            private set => _graphics = value;
         }
 
         public void SetDescription(string description)
@@ -85,14 +87,14 @@ namespace BusinessEntities
             _availableTo = availableTo;
         }
 
-        public void SetGraphics(ProductGraphics[] graphics)
+        public void SetGraphics(List<ProductGraphics> graphics)
         {
-            _graphics = graphics ?? Array.Empty<ProductGraphics>();
+            _graphics = graphics;
         }
 
-        public void SetMetaData(ProductMetaData[] metaData)
+        public void SetTags(IEnumerable<string> tags)
         {
-            _metaData = metaData ?? Array.Empty<ProductMetaData>();
+            _tags.Initialize(tags);
         }
 
         public DateTime CreatedDate { get; } = DateTime.Now;
@@ -116,12 +118,5 @@ namespace BusinessEntities
         public string ImageUrl { get; set; }
         public string ThumbnailUrl { get; set; }
         public string Title { get; set; }
-    }
-
-    public class ProductMetaData
-    {
-
-        public string Keywords { get; set; }
-        public string MetaDescription { get; set; }
     }
 }
