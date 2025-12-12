@@ -1,20 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessEntities
 {
     public class Order : IdObject
     {
-        public long OrderId { get; set; }
-        public DateTime OrderDate { get; set; }
-        public int CustomerId { get; set; }
-        public List<OrderItem> Items { get; set; } 
-            = new List<OrderItem>();
+        private long _orderId;
+        private decimal _totalAmount;
+        private Address _shippingAddress;
+        private Guid _customerId;
+        private List<OrderItem> _orderItems = new List<OrderItem>();
 
-        public decimal TotalAmount { get; set; }
+        public long OrderId {
+            get => _orderId;
+            private set => _orderId = value;
+        }
+
+        public decimal TotalAmount
+        {
+            get => _totalAmount;
+            private set => _totalAmount = value;
+        }
+        
+        public Guid CustomerId
+        {
+            get => _customerId;
+            private set => _customerId = value;
+        }
+
+        public List<OrderItem> Items
+        {
+            get => _orderItems;
+            private set => _orderItems = value;
+        }
+
         public OrderStatus Status { get; set; }
 
-        public Address ShippingAddress { get; set; }
+        public DateTime? CancelledAt { get; set; }
+
+        public Address ShippingAddress
+        {
+            get => _shippingAddress;
+            private set => _shippingAddress = value;
+        }
+
+        public void GeneratOrderId()
+        {
+            _orderId = DateTime.UtcNow.Ticks;
+        }
 
         public void CalculateTotalAmount()
         {
@@ -23,9 +57,45 @@ namespace BusinessEntities
             {
                 total += item.Quantity * item.UnitPrice;
             }
-            TotalAmount = total;
+
+            _totalAmount = total;
         }
 
+        public void UpdateStatsus(OrderStatus newStatus)
+        {
+            Status = newStatus;
+
+            if (newStatus == OrderStatus.Cancelled)
+            {
+                CancelledAt = DateTime.UtcNow;
+            }
+
+            if(newStatus != OrderStatus.Cancelled)
+            {
+                CancelledAt = null;
+
+                UpdateDate = DateTime.UtcNow;
+            }
+        }
+
+        public void SetShippingAddress(Address address)
+        {
+            _shippingAddress = address;
+        }
+
+        public void SetCustomerId(Guid customerId)
+        {
+            _customerId = customerId;
+        }
+
+        public void SetOrderItems(IEnumerable<OrderItem> items)
+        {
+            _orderItems = items.ToList();
+        }
+
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+
+        public DateTime UpdateDate { get; set; } = DateTime.UtcNow;
     }
 
     public class OrderItem
@@ -46,6 +116,16 @@ namespace BusinessEntities
 
     public class Address
     {
+        public Address(string street, string city, string state, string zipCode, string country
+            )
+        {
+            Street = street;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+            Country = country;
+        }
+
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }

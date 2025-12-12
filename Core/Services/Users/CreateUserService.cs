@@ -14,7 +14,8 @@ namespace Core.Services.Users
         private readonly IIdObjectFactory<User> _userFactory;
         private readonly IUserRepository _userRepository;
 
-        public CreateUserService(IIdObjectFactory<User> userFactory, IUserRepository userRepository, IUpdateUserService updateUserService)
+        public CreateUserService(IIdObjectFactory<User> userFactory, 
+            IUserRepository userRepository, IUpdateUserService updateUserService)
         {
             _userFactory = userFactory;
             _userRepository = userRepository;
