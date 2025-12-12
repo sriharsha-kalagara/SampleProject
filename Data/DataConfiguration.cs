@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using BusinessEntities;
 using Common;
+using Microsoft.Extensions.Caching.Memory;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
@@ -16,6 +17,8 @@ namespace Data
             var assembly = typeof(DataConfiguration).Assembly;
 
             container.RegisterSingleton<IListTypeLookup<Assembly>, ListTypeLookup<Assembly>>();
+
+            container.RegisterSingleton<IMemoryCache>(() => new MemoryCache(new MemoryCacheOptions()));
 
             InitializeAssemblyInstancesService.RegisterAssemblyWithSerializableTypes(container, typeof(User).Assembly);
             InitializeAssemblyInstancesService.RegisterAssemblyWithSerializableTypes(container, assembly);

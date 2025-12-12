@@ -1,5 +1,6 @@
 ﻿using BusinessEntities;
 using Common;
+using Microsoft.Extensions.Caching.Memory;
 using Raven.Client;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,14 @@ namespace Data.Repositories
         : Repository<Product>, IProductsRepository
     {
         private readonly IDocumentSession _documentSession;
-        public ProductsRepository(IDocumentSession documentSession)
+        private readonly IMemoryCache _memoryCache;
+
+        public ProductsRepository(
+            IMemoryCache memoryCache,
+            IDocumentSession documentSession)
             : base(documentSession)
         {
+            _memoryCache = memoryCache;
             _documentSession = documentSession;
         }
 
@@ -22,16 +28,24 @@ namespace Data.Repositories
         {
             _documentSession.Delete(entity);
             _documentSession.SaveChanges();
+
+            _memoryCache.Remove("lendingtree_products");
         }
 
         public Product Get(Guid id)
         {
-            return _documentSession.Load<Product>(id);
+            var products = GetAll();
+            return products.FirstOrDefault(p => p.Id == id);
         }
 
         public List<Product> GetAll()
         {
-            return _documentSession.Load<Product>().ToList();
+            return _memoryCache.GetOrCreate("lendingtree_products", entry =>
+            {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(10);
+
+                return _documentSession.Load<Product>().ToList();
+            });
         }
 
         public void Save(Product product)
@@ -39,6 +53,8 @@ namespace Data.Repositories
             _documentSession.Store(product);
 
             _documentSession.SaveChanges();
+
+            _memoryCache.Remove("lendingtree_products");
         }
 
         public void Update(Product product)
@@ -46,6 +62,8 @@ namespace Data.Repositories
             _documentSession.Store(product);
 
             _documentSession.SaveChanges();
+
+            _memoryCache.Remove("lendingtree_products");
         }
     }
 }

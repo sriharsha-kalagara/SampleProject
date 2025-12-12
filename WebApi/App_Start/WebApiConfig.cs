@@ -34,7 +34,7 @@ namespace WebApi
             config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = config.DependencyResolver;
 
-            var settings = config.Formatters.JsonFormatter.SerializerSettings;
+                       var settings = config.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
             settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
