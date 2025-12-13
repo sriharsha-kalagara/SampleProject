@@ -11,14 +11,16 @@ namespace Data.Indexes
         {
             Map = products => from product in products
                               select new
-                           {
-                               product.Name,
-                               product.AvailableFrom,
-                               product.AvailableTo,
-                               product.Price,
-                               product.Tags,
-                               product.GenderTags
-                           };
+                              {
+                                  product.Id,
+                                  product.Name,
+                                  product.AvailableFrom,
+                                  product.AvailableTo,
+                                  product.Price,
+                                  product.Tags,
+                                  product.GenderTags,
+                                  product.Stock
+                              };
 
             Index(x => x.Description, FieldIndexing.NotAnalyzed);
         }

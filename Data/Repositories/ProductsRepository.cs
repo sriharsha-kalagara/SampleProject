@@ -28,15 +28,23 @@ namespace Data.Repositories
         public void Delete(Product entity)
         {
             _documentSession.Delete(entity);
-            _documentSession.SaveChanges();
 
             _memoryCache.Remove("lendingtree_products");
         }
 
         public Product Get(Guid id)
         {
-            var products = GetAll();
-            return products.FirstOrDefault(p => p.Id == id);
+            var query = _documentSession.Advanced.DocumentQuery<Product, ProductsListIndex>();
+
+            query = query.WhereLessThanOrEqual("AvailableFrom", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThanOrEqual("AvailableTo", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThan("Stock", "0");
+            query = query.AndAlso();
+            query = query.WhereEquals("Id", "products/" + id);
+
+            return query.FirstOrDefault();
         }
 
         public List<Product> GetAll()
@@ -50,6 +58,8 @@ namespace Data.Repositories
                 query = query.WhereLessThanOrEqual("AvailableFrom", DateTime.UtcNow);
                 query = query.AndAlso();
                 query = query.WhereGreaterThanOrEqual("AvailableTo", DateTime.UtcNow);
+                query = query.AndAlso();
+                query = query.WhereGreaterThan("Stock", "0");
 
                 return query.ToList();
             });
@@ -59,16 +69,12 @@ namespace Data.Repositories
         {
             _documentSession.Store(product);
 
-            _documentSession.SaveChanges();
-
             _memoryCache.Remove("lendingtree_products");
         }
 
         public void Update(Product product)
         {
             _documentSession.Store(product);
-
-            _documentSession.SaveChanges();
 
             _memoryCache.Remove("lendingtree_products");
         }

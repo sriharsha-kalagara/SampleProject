@@ -1,4 +1,6 @@
-﻿using Core.Services.Products;
+﻿using BusinessEntities;
+using Core.Services.Products;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -86,18 +88,22 @@ namespace WebApi.Controllers
         public HttpResponseMessage Get(Guid productId)
         {
             var product = _getProductService.Get(productId);
+
+            if(product  == null) { return DoesNotExist(); }
+
             return Found(new ProductData(product));
         }
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage GetAll(int skip, int take)
+        public HttpResponseMessage GetAll()
         {
             var products = _getProductService.GetAll()
-                .Skip(skip)
-                .Take(take)
                 .Select(u => new ProductData(u))
                 .ToList();
+
+            if (products == null || products.Count == 0) { return DoesNotExist(); }
+
             return Found(products);
         }
     }
