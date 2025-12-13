@@ -13,6 +13,7 @@ namespace BusinessEntities
         private DateTime? _availableTo;
         private List<ProductGraphics> _graphics = new List<ProductGraphics>();
         private readonly List<string> _tags = new List<string>();
+        private readonly List<string> _genderTags = new List<string>();
 
         public string Description
         {
@@ -47,6 +48,12 @@ namespace BusinessEntities
         {
             get => _tags;
             private set => _tags.Initialize(value);
+        }
+
+        public IEnumerable<string> GenderTags
+        {
+            get => _genderTags;
+            private set => _genderTags.Initialize(value);
         }
 
         public List<ProductGraphics> Graphics {
@@ -95,6 +102,11 @@ namespace BusinessEntities
         public void SetTags(IEnumerable<string> tags)
         {
             _tags.Initialize(tags);
+        }
+
+        public void SetGenderTags(IEnumerable<string> genderTags)
+        {
+            _genderTags.Initialize(genderTags);
         }
 
         public DateTime CreatedDate { get; } = DateTime.Now;

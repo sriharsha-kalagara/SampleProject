@@ -1,7 +1,6 @@
 ﻿using BusinessEntities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services.Products
 {
@@ -9,6 +8,7 @@ namespace Core.Services.Products
     {
         void Update(Product product, string name, string description,
            decimal price, long quantity,
-           DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags);
+           DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags,
+           IEnumerable<string> GenderTags);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BusinessEntities;
 using Common;
+using Data.Indexes;
 using Microsoft.Extensions.Caching.Memory;
 using Raven.Client;
 using System;
@@ -44,7 +45,13 @@ namespace Data.Repositories
             {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(10);
 
-                return _documentSession.Load<Product>().ToList();
+                var query = _documentSession.Advanced.DocumentQuery<Product, ProductsListIndex>();
+
+                query = query.WhereLessThanOrEqual("AvailableFrom", DateTime.UtcNow);
+                query = query.AndAlso();
+                query = query.WhereGreaterThanOrEqual("AvailableTo", DateTime.UtcNow);
+
+                return query.ToList();
             });
         }
 

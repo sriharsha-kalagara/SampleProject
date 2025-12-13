@@ -10,7 +10,11 @@ namespace WebApi.Models.Products
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public List<string> Tags { get; set; }
+
+        public long Stock {  get; set; }
+
+        public IEnumerable<string> Tags { get; set; }
+        public IEnumerable<string> GenderTags { get; set; }
         public bool IsAvailable { get; set; }
 
         public string ImageURl { get; set; }
@@ -22,8 +26,10 @@ namespace WebApi.Models.Products
             Name = product.Name;
             Description = product.Description;
             Price = product.Price;
-            Tags = product.Tags?.ToList() ?? new List<string>();
-            IsAvailable = product.AvailableFrom >= DateTime.Now && product.AvailableTo <= DateTime.Now;
+            Tags = product.Tags;
+            Stock = product.Stock;
+            GenderTags = product.GenderTags;
+            IsAvailable = product.AvailableFrom <= DateTime.Now && product.AvailableTo >= DateTime.Now;
             ImageURl = product.Graphics?.FirstOrDefault()?.ImageUrl;
             ThumbnailUrl = product.Graphics?.FirstOrDefault()?.ThumbnailUrl;
         }

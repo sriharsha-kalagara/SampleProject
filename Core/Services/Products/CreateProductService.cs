@@ -25,12 +25,13 @@ namespace Core.Services.Products
 
         public Product Create(Guid id, string name, string description,
            decimal price, long quantity,
-           DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags)
+           DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags,
+           IEnumerable<string> genderTags)
         {
             var proudct = _productFactory.Create(id);
 
             _updateProductService.Update
-                (proudct, name, description, price, quantity, availableFrom, availableTo, tags);
+                (proudct, name, description, price, quantity, availableFrom, availableTo, tags, genderTags);
 
             _productsRepository.Save(proudct);
 

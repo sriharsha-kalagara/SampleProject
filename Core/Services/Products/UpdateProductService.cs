@@ -10,7 +10,8 @@ namespace Core.Services.Products
     {
         public void Update(Product product, string name, string description, 
             decimal price, long quantity, 
-            DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags
+            DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags,
+            IEnumerable<string> GenderTags
             )
         {
             product.SetName(name);
@@ -19,6 +20,7 @@ namespace Core.Services.Products
             product.SetStock(quantity);
             product.SetAvailability (availableFrom, availableTo);
             product.SetTags(Tags);
+            product.SetGenderTags(GenderTags);  
         }
     }
 }

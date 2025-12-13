@@ -34,10 +34,17 @@ namespace WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage Create(Guid productId, [FromBody] ProductModel model)
         {
+            var IsProductExist = _getProductService.Get(productId); 
+
+            if(IsProductExist != null)
+               return Conflict($"PUT attempted on document 'products/{productId}' " +
+                    "using a non current etag\" means that the record with the same ID already exists.");
+
             var product = _createProductService.Create(productId,
                 model.Name, model.Description, model.Price, model.Stock, model.AvailableFrom,
                 model.AvailableTo,
-                model.Tags);
+                model.Tags,
+                model.GenderTags);
 
             return Found(new ProductData(product));
         }
@@ -55,7 +62,7 @@ namespace WebApi.Controllers
             _updateProductService.Update
                 (product, model.Name, model.Description, model.Price, model.Stock, model.AvailableFrom,
                 model.AvailableTo,
-                model.Tags);
+                model.Tags, model.GenderTags);
 
             return Found(new ProductData(product));
         }

@@ -14,5 +14,6 @@ namespace WebApi.Models.Products
         public string ImageUrl { get; set; }
         public string ThumbnailUrl { get; set; }
         public IEnumerable<string> Tags { get; set; }
+        public IEnumerable<string> GenderTags { get; set; }
     }
 }

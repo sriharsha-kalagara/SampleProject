@@ -8,6 +8,7 @@ namespace Core.Services.Products
     {
        Product Create(Guid id, string name, string description,
           decimal price, long quantity,
-          DateTime availableFrom, DateTime availableTo, IEnumerable<string> Tags);
+          DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags,
+          IEnumerable<string> genderTags);
     }
 }
