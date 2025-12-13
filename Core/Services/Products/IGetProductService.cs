@@ -10,5 +10,7 @@ namespace Core.Services.Products
         Product Get(Guid id);
 
         IEnumerable<Product> GetAll();
+
+        IEnumerable<Product> Get(string genderTag = null, string tag = null);
     }
 }

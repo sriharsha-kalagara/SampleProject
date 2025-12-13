@@ -3,7 +3,6 @@ using Common;
 using Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services.Products
 {
@@ -23,6 +22,11 @@ namespace Core.Services.Products
         Product IGetProductService.Get(Guid id)
         {
             return _productsRepository.Get(id);
+        }
+
+        public IEnumerable<Product> Get(string genderTag = null, string tag = null)
+        {
+            return _productsRepository.Get(genderTag, tag);
         }
     }
 }

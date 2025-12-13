@@ -1,6 +1,4 @@
-﻿using BusinessEntities;
-using Core.Services.Products;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Core.Services.Products;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -103,6 +101,20 @@ namespace WebApi.Controllers
                 .ToList();
 
             if (products == null || products.Count == 0) { return DoesNotExist(); }
+
+            return Found(products);
+        }
+
+        [Route("filter")]
+        [HttpGet]
+        public HttpResponseMessage FilterProducts(string tag = null, string genderTag = null)
+        {
+            var products = _getProductService.Get(genderTag, tag);
+
+            if (products.Count() == 0)
+            {
+                return DoesNotExist();
+            }
 
             return Found(products);
         }

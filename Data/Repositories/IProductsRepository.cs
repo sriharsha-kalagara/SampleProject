@@ -9,5 +9,7 @@ namespace Data.Repositories
         List<Product> GetAll();
 
         void Update(Product product);
+
+        IEnumerable<Product> Get(string genderTag, string tag);
     }
 }

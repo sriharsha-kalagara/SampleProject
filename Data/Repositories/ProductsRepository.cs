@@ -47,6 +47,33 @@ namespace Data.Repositories
             return query.FirstOrDefault();
         }
 
+        public IEnumerable<Product> Get(string genderTag, string tag)
+        {
+            var query = _documentSession.Advanced.DocumentQuery<Product, ProductsListIndex>();
+
+            query = query.WhereLessThanOrEqual("AvailableFrom", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThanOrEqual("AvailableTo", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThan("Stock", "0");
+
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+                query = query.AndAlso();
+
+                query = query.ContainsAny("Tags", new string[] { tag });
+            }
+
+            if (!string.IsNullOrWhiteSpace(genderTag))
+            {
+                query = query.AndAlso();
+
+                query = query.ContainsAny("GenderTags", new string[] { genderTag });
+            }
+
+            return query.ToList();
+        }
+
         public List<Product> GetAll()
         {
             return _memoryCache.GetOrCreate("lendingtree_products", entry =>
