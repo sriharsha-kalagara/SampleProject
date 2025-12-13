@@ -2,6 +2,7 @@
 using Common;
 using Data.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Services.Orders
 {
@@ -18,6 +19,11 @@ namespace Core.Services.Orders
         public Order Get(Guid orderId)
         {
             return _orderRepository.Get(orderId);
+        }
+
+        public IEnumerable<Order> GetByCustomerId(Guid id)
+        {
+            return _orderRepository.GetByCustomerId(id);
         }
     }
 }

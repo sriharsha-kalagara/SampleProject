@@ -1,7 +1,10 @@
 ﻿using BusinessEntities;
 using Common;
+using Data.Indexes;
 using Raven.Client;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Data.Repositories
 {
@@ -28,6 +31,15 @@ namespace Data.Repositories
         public Order Get(Guid id)
         {
             return _documentSession.Load<Order>(id);
+        }
+
+        public IEnumerable<Order> GetByCustomerId(Guid id)
+        {
+            var query = _documentSession.Advanced.DocumentQuery<Order>();
+
+            query = query.WhereEquals("CustomerId", id);
+
+            return query.ToList();
         }
 
         public void Save(Order order)

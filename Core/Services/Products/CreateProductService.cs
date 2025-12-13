@@ -28,9 +28,12 @@ namespace Core.Services.Products
            DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags)
         {
             var proudct = _productFactory.Create(id);
+
             _updateProductService.Update
                 (proudct, name, description, price, quantity, availableFrom, availableTo, tags);
+
             _productsRepository.Save(proudct);
+
             return proudct;
         }
     }

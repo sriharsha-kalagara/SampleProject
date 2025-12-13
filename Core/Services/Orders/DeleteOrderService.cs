@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using BusinessEntities;
+using Common;
 using Data.Repositories;
 using System;
 
@@ -14,12 +15,9 @@ namespace Core.Services.Orders
             _orderRepository = orderRepository;
         }
 
-        public void Delete(Guid orderId)
+        public void Delete(Order order)
         {
-            var order = _orderRepository.Get(orderId)
-                ?? throw new ArgumentException("Order not found.");
-
-            order.Status = BusinessEntities.OrderStatus.Cancelled;
+            order.Status = OrderStatus.Cancelled;
 
             order.CancelledAt = DateTime.UtcNow;
 

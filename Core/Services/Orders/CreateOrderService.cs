@@ -1,37 +1,38 @@
 ﻿using BusinessEntities;
 using Core.Factories;
-using Core.Services.Products;
 using Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services.Orders
 {
-    public class CreateOrderService
+    public class CreateOrderService : ICreateOrderService
     {
-        private readonly IUpdateProductService _updateProductService;
+        private readonly IUpdateOrderService _updateOrderService;
         private readonly IIdObjectFactory<Order> _orderFactory;
-        private readonly IProductsRepository _productsRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public CreateOrderService(IIdObjectFactory<Order> productFactory,
-            IProductsRepository productRepository, IUpdateProductService updateProductService)
+        public CreateOrderService(IIdObjectFactory<Order> orderFactory,
+            IOrderRepository orderRepository, IUpdateOrderService updateOrderService)
         {
-            _orderFactory = productFactory;
-            _productsRepository = productRepository;
-            _updateProductService = updateProductService;
+            _orderFactory = orderFactory;
+            _orderRepository = orderRepository;
+            _updateOrderService = updateOrderService;
         }
 
-        public Order Create(Guid id, string name, string description,
-           decimal price, long quantity,
-           DateTime availableFrom, DateTime availableTo, IEnumerable<string> tags)
+        public Order Create(Guid id, Guid customerId,
+            Address address,
+            IEnumerable<OrderItem> items)
         {
             var order = _orderFactory.Create(id);
+
             order.GeneratOrderId();
 
-            _updateProductService.Update
-                (order, name, description, price, quantity, availableFrom, availableTo, tags);
-            _productsRepository.Save(order);
+            _updateOrderService.Update
+                (order, customerId , address, items);
+
+            _orderRepository.Save(order);
+
             return order;
         }
     }

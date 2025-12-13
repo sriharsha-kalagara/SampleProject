@@ -74,7 +74,7 @@ namespace BusinessEntities
             {
                 CancelledAt = null;
 
-                UpdateDate = DateTime.UtcNow;
+                UpdatedAt = DateTime.UtcNow;
             }
         }
 
@@ -93,14 +93,20 @@ namespace BusinessEntities
             _orderItems = items.ToList();
         }
 
-        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime UpdateDate { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 
-    public class OrderItem
+    public class OrderItem 
     {
-        public int ProductId { get; set; }
+        public OrderItem(Guid productId, int quantity, decimal unitPrice)
+        {
+            ProductId = productId;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
+        }
+        public Guid ProductId { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
     }
