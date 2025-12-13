@@ -11,8 +11,6 @@ namespace WebApi.Controllers
     [RoutePrefix("Orders")]
     public class OrdersController : BaseApiController
     {
-        public OrdersController() { }
-
         private readonly ICreateOrderService _createOrderService;
         private readonly IDeleteOrderService _deleteOrderService;
         private readonly IGetOrderService _getOrderService;

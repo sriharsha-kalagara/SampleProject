@@ -36,9 +36,18 @@ namespace Data
 
         private static IDocumentStore InitializeDocumentStore(Assembly assembly, bool createIndexes)
         {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback
+    = delegate (object s, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+    System.Security.Cryptography.X509Certificates.X509Chain chain,
+    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+    {
+        return true; // Trust any certificate
+    };
+
             var documentStore = new DocumentStore
                                 {
-                                    Url = "http://localhost:8080/",
+                                    //Url = "http://localhost:8080/",
+                                    Url = "http://desktop-67pu5ge:8080/",
                                     DefaultDatabase = "SampleProject",
                                     Conventions =
                                     {

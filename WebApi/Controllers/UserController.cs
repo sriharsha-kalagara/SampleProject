@@ -1,9 +1,9 @@
-﻿using System;
+﻿using BusinessEntities;
+using Core.Services.Users;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
-using BusinessEntities;
-using Core.Services.Users;
 using WebApi.Models.Users;
 
 namespace WebApi.Controllers
@@ -28,6 +28,16 @@ namespace WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage CreateUser(Guid userId, [FromBody] UserModel model)
         {
+            //checking if user already exists before creating the user account
+
+            var isUserExist = _getUserService.GetUser(userId);
+
+            if(isUserExist != null)
+            {
+                return Conflict($"PUT attempted on document 'users/{userId}' " +
+                    "using a non current etag\" means that the record with the same ID already exists.");
+            }
+
             var user = _createUserService.Create(userId, model.Name, model.Email, model.Type, model.AnnualSalary, model.Tags);
             return Found(new UserData(user));
         }
@@ -74,6 +84,12 @@ namespace WebApi.Controllers
                                        .Skip(skip).Take(take)
                                        .Select(q => new UserData(q))
                                        .ToList();
+
+            if (users.Count == 0)
+            {
+                return DoesNotExist();
+            }
+
             return Found(users);
         }
 
@@ -89,7 +105,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetUsersByTag(string tag)
         {
-            throw new NotImplementedException();
+            var users = _getUserService.GetUsers(null, null, null, tag)
+                                       .Select(q => new UserData(q))
+                                       .ToList();
+            if(users.Count == 0)
+            {
+                return DoesNotExist();
+            }
+
+            return Found(users);
         }
     }
 }

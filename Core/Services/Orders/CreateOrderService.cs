@@ -1,4 +1,5 @@
 ﻿using BusinessEntities;
+using Common;
 using Core.Factories;
 using Data.Repositories;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace Core.Services.Orders
 {
+    [AutoRegister]
     public class CreateOrderService : ICreateOrderService
     {
         private readonly IUpdateOrderService _updateOrderService;

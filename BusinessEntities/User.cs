@@ -62,7 +62,7 @@ namespace BusinessEntities
         {
             if (string.IsNullOrEmpty(email))
             {
-                throw new ArgumentNullException("Name was not provided.");
+                throw new ArgumentNullException("Email was not provided.");
             }
             _email = email;
         }
@@ -77,9 +77,11 @@ namespace BusinessEntities
             _email = _name;
         }
 
-        public void SetMonthlySalary(decimal? monthlySalary)
+        public void SetMonthlySalary(decimal? annualSalary)
         {
-            _monthlySalary = monthlySalary;
+            var isValid = decimal.TryParse(annualSalary.ToString(), out decimal result);
+
+            _monthlySalary = isValid && result > 0 ? Math.Round(result / 12, 2) : annualSalary;
         }
 
         public void SetTags(IEnumerable<string> tags)
