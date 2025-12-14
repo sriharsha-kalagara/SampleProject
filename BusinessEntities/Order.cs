@@ -65,17 +65,24 @@ namespace BusinessEntities
         {
             Status = newStatus;
 
+            if (newStatus == OrderStatus.Pending)
+            {
+                GeneratOrderId();
+            }
+
             if (newStatus == OrderStatus.Cancelled)
             {
                 CancelledAt = DateTime.UtcNow;
+
+                _totalAmount = 0;
             }
 
             if(newStatus != OrderStatus.Cancelled)
             {
                 CancelledAt = null;
-
-                UpdatedAt = DateTime.UtcNow;
             }
+
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetShippingAddress(Address address)

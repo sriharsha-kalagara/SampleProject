@@ -12,18 +12,15 @@ namespace WebApi.Controllers
     public class OrdersController : BaseApiController
     {
         private readonly ICreateOrderService _createOrderService;
-        private readonly IDeleteOrderService _deleteOrderService;
         private readonly IGetOrderService _getOrderService;
         private readonly IUpdateOrderService _updateOrderService;
 
         public OrdersController(
             ICreateOrderService createOrderService,
-            IDeleteOrderService deleteOrderService,
             IGetOrderService getOrderService,
             IUpdateOrderService updateOrderService)
         {
             _createOrderService = createOrderService;
-            _deleteOrderService = deleteOrderService;
             _getOrderService = getOrderService;
             _updateOrderService = updateOrderService;
         }
@@ -54,9 +51,7 @@ namespace WebApi.Controllers
             var order = _getOrderService.Get(orderId);
 
             if (order == null)
-            {
                 return DoesNotExist();
-            }
 
             _updateOrderService.Update
                 (order,
@@ -69,7 +64,7 @@ namespace WebApi.Controllers
                 model.Items.Select(t =>
                 {
                     return new OrderItem(t.ProductId, t.Quantity, t.Price);
-                }));
+                }), OrderStatus.Processing);
 
             return Found(new OrderData(order));
         }
@@ -81,11 +76,11 @@ namespace WebApi.Controllers
             var order = _getOrderService.Get(orderId);
 
             if (order == null)
-            {
                 return DoesNotExist();
-            }
 
-            _deleteOrderService.Delete(order);
+            _updateOrderService.Update
+                 (order, order.CustomerId, order.ShippingAddress,
+                    order.Items, OrderStatus.Cancelled);
 
             return Found();
         }
@@ -106,13 +101,13 @@ namespace WebApi.Controllers
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage GetAll(Guid customerId, int skip, int take)
+        public HttpResponseMessage GetAll(Guid customerId)
         {
             var orders = _getOrderService.GetByCustomerId(customerId)
-                .Skip(skip)
-                .Take(take)
                 .Select(u => new OrderData(u))
                 .ToList();
+
+            if(orders.Count == 0) { return DoesNotExist(); }
 
             return Found(orders);
         }

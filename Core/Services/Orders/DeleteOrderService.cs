@@ -1,27 +1,23 @@
 ﻿using BusinessEntities;
 using Common;
-using Data.Repositories;
-using System;
 
 namespace Core.Services.Orders
 {
     [AutoRegister]
     public class DeleteOrderService : IDeleteOrderService
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IUpdateOrderService _updateOrderService;
 
-        public DeleteOrderService(IOrderRepository orderRepository)
+        public DeleteOrderService(
+            IUpdateOrderService updateOrderService)
         {
-            _orderRepository = orderRepository;
+            _updateOrderService = updateOrderService;
         }
 
         public void Delete(Order order)
         {
-            order.Status = OrderStatus.Cancelled;
-
-            order.CancelledAt = DateTime.UtcNow;
-
-            _orderRepository.Delete(order);
+            _updateOrderService.Update(order, order.CustomerId,
+                order.ShippingAddress, order.Items, OrderStatus.Cancelled);
         }
     }
 }

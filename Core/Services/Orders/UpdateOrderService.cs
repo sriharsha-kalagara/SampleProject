@@ -2,7 +2,6 @@
 using Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services.Orders
 {
@@ -13,12 +12,14 @@ namespace Core.Services.Orders
         public void Update(Order order, 
             Guid customerId,
             Address address,
-            IEnumerable<OrderItem> items)
+            IEnumerable<OrderItem> items,
+            OrderStatus orderStatus)
         {
             order.SetCustomerId(customerId);
             order.SetOrderItems(items);
             order.SetShippingAddress(address);
             order.CalculateTotalAmount();
+            order.UpdateStatsus(orderStatus);
         }
     }
 }

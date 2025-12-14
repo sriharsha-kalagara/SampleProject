@@ -1,6 +1,5 @@
 ﻿using BusinessEntities;
 using Common;
-using Data.Indexes;
 using Raven.Client;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace Data.Repositories
         private readonly IDocumentSession _documentSession;
 
         public OrderRepository
-            (IDocumentSession documentSession) 
+            (IDocumentSession documentSession)
             : base(documentSession)
         {
             _documentSession = documentSession;
@@ -24,8 +23,6 @@ namespace Data.Repositories
         public void Delete(Order order)
         {
             _documentSession.Store(order);
-
-            _documentSession.SaveChanges();
         }
 
         public Order Get(Guid id)
@@ -45,15 +42,6 @@ namespace Data.Repositories
         public void Save(Order order)
         {
             _documentSession.Store(order);
-
-            _documentSession.SaveChanges();
-        }
-
-        public void Update(Order order)
-        {
-            _documentSession.Store(order);
-
-            _documentSession.SaveChanges();
         }
     }
 }

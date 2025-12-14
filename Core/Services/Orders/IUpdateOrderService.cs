@@ -1,7 +1,6 @@
 ﻿using BusinessEntities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services.Orders
 {
@@ -10,6 +9,7 @@ namespace Core.Services.Orders
         void Update(Order order,
             Guid customerId,
             Address address,
-            IEnumerable<OrderItem> items);
+            IEnumerable<OrderItem> items,
+            OrderStatus orderStatus);
     }
 }

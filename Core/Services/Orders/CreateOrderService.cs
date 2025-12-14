@@ -28,10 +28,8 @@ namespace Core.Services.Orders
         {
             var order = _orderFactory.Create(id);
 
-            order.GeneratOrderId();
-
             _updateOrderService.Update
-                (order, customerId , address, items);
+                (order, customerId , address, items, OrderStatus.Pending);
 
             _orderRepository.Save(order);
 
