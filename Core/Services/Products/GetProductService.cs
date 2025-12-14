@@ -1,6 +1,7 @@
 ﻿using BusinessEntities;
 using Common;
 using Data.Repositories;
+using Raven.Abstractions.Data;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +28,11 @@ namespace Core.Services.Products
         public IEnumerable<Product> Get(string genderTag = null, string tag = null)
         {
             return _productsRepository.Get(genderTag, tag);
+        }
+
+        public IEnumerable<Product> GetListOfProducts(IEnumerable<Guid> ids)
+        {
+            return _productsRepository.GetListOfProducts(ids);
         }
     }
 }

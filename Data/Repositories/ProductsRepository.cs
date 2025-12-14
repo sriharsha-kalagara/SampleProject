@@ -2,6 +2,7 @@
 using Common;
 using Data.Indexes;
 using Microsoft.Extensions.Caching.Memory;
+using Raven.Abstractions.Extensions;
 using Raven.Client;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace Data.Repositories
             _memoryCache.Remove("lendingtree_products");
         }
 
-        public Product Get(Guid id)
+        public Product Get(List<Guid> id)
         {
             var query = _documentSession.Advanced.DocumentQuery<Product, ProductsListIndex>();
 
@@ -45,6 +46,28 @@ namespace Data.Repositories
             query = query.WhereEquals("Id", "products/" + id);
 
             return query.FirstOrDefault();
+        }
+
+        public IEnumerable<Product> GetListOfProducts(IEnumerable<Guid> ids)
+        {
+            var query = _documentSession.Advanced.DocumentQuery<Product, ProductsListIndex>();
+
+            query = query.WhereLessThanOrEqual("AvailableFrom", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThanOrEqual("AvailableTo", DateTime.UtcNow);
+            query = query.AndAlso();
+            query = query.WhereGreaterThan("Stock", "0");
+            query = query.AndAlso();
+
+            List<string> products = new List<string>();
+            ids.ForEach(g => products.Add("products/" + g));
+
+            ids.ForEach(id =>
+            {
+                query = query.WhereIn("Id", products.AsEnumerable());
+            });
+            
+            return query.ToList();
         }
 
         public IEnumerable<Product> Get(string genderTag, string tag)
