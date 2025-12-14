@@ -1,0 +1,940 @@
+{
+  "info": {
+    "_postman_id": "81c5facf-8f45-473c-8ec2-bc307142988c",
+    "name": "New Collection Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Clear",
+          "id": "c8ee0ae6-d176-4542-b2da-745d985896a8",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:49834/users/clear",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "clear"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "id": "547be76b-f84b-4c77-a693-ef608fae79f3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"John Smith\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 2,\r\n    \"age\": 27,\r\n    \"annualSalary\": 72000,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "1422740e-6426-4c46-8445-3f5274a62424",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "id": "271a6480-be06-4154-8df6-5b5592cf7fe9",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 35,\r\n    \"annualSalary\": 120000,\r\n    \"tags\": [\"b\", \"c\", \"e\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "9422740e-6426-4c46-8445-3f5274a62424",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "id": "cbd6d2ab-788f-41e2-8b37-8fd8fd8b1742",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Andy\",\r\n    \"email\": \"andy@companya.com\",\r\n    \"type\": 2,\r\n    \"age\": 34,\r\n    \"annualSalary\": 86000,\r\n    \"tags\": [\"D\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/8722740e-6426-4c46-8445-3f5274a62424/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "8722740e-6426-4c46-8445-3f5274a62424",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "47af8443-42d9-429e-b680-fb55fb21e7f9"
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Create",
+          "id": "d184410c-4f5b-42b9-b678-f473af79e629",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "//The exception \"PUT attempted on document 'users/1422740e-6426-4c46-8445-3f5274a62424' using a non current etag\" means that the record with the same ID already exists.\r\n{\r\n    \"name\": \"Mary\",\r\n    \"email\": \"mary@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "1422740e-6426-4c46-8445-3f5274a62424",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "54789fb0-cb00-4535-8953-af5b591ac40c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mark Williams (updated)\",\r\n    \"email\": null,\r\n    \"type\": 2,\r\n    \"age\": 29,\r\n    \"annualSalary\": 80000,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "9422740e-6426-4c46-8445-3f5274a62424",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "ce306920-f66e-4b39-a584-80416e87f5e0",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 10,\r\n    \"tags\": [\"A\", \"C\", \"D\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "9422740e-6426-4c46-8445-3f5274a62424",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "f2a7c3c9-ab1f-4208-b1d7-7208449d0bd2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mark Williams\",\r\n    \"email\": \"mark@companya.com\",\r\n    \"type\": 1,\r\n    \"age\": 29,\r\n    \"annualSalary\": 152000,\r\n    \"tags\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "9422740e-6426-4c46-8445-3f5274a62424",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get By Tag",
+          "id": "369a5f5b-f56a-4ea3-9391-095a319b1572",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:49834/users/list/tag?tag=D",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "list",
+                "tag"
+              ],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "D"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:49834/users/list/tag?tag=D",
+          "id": "540cf695-5d11-416f-90af-9fdb1c000ae1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:49834/users/list/tag?tag=D",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "49834",
+              "path": [
+                "users",
+                "list",
+                "tag"
+              ],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "D"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "17c9229a-7b4e-4468-ba02-7ce8b8b2d8bf"
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Initialize",
+          "item": [
+            {
+              "name": "Create",
+              "id": "5568312f-f8ac-403e-8314-889687e3687d",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Legos\",\r\n    \"description\": \"kids legos for the age 7-10\",\r\n    \"price\": 1,\r\n    \"stock\": 29,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"10/10/2026\",\r\n    \"tags\": [\r\n        \"Toys\",\r\n        \"Legos\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Kids\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/71912361-dd46-4151-bd21-baad007efd41/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "71912361-dd46-4151-bd21-baad007efd41",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "5d90a18b-df2e-4547-9c09-3889da6a093f",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Chess board\",\r\n    \"description\": \"kids board games for ages 7-18\",\r\n    \"price\": 10,\r\n    \"stock\": 50,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"10/10/2026\",\r\n    \"tags\": [\r\n        \"Toys\",\r\n        \"Board Games\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Kids\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/555e5de5-2e36-4d70-bb77-b109e5729363/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "555e5de5-2e36-4d70-bb77-b109e5729363",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "34b864a8-a383-485a-b57d-03789a429485",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Shirt\",\r\n    \"description\": \"Cotton Polo\",\r\n    \"price\": 5,\r\n    \"stock\": 50,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"12/31/2025\",\r\n    \"tags\": [\r\n        \"Clothes\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Mens\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/21fec6b9-a206-457f-abf0-a7182e949230/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "21fec6b9-a206-457f-abf0-a7182e949230",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "c5c62e6c-24fe-4b01-9509-1e9a81801f14",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Ring\",\r\n    \"description\": \"Womnes Jewlery\",\r\n    \"price\": 100,\r\n    \"stock\": 10,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"03/01/2026\",\r\n    \"tags\": [\r\n        \"Jewlery\",\r\n        \"Gold\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Womnes\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/bc4dc637-87b5-4562-934e-5ccea70ab68b/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "bc4dc637-87b5-4562-934e-5ccea70ab68b",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "bf31f1cf-cf0a-4f4d-b5b1-98f8eb7ab23c"
+        },
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Create",
+              "id": "dd0a6fb9-5510-49cd-9f3b-ca5e58068e08",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Baseball\",\r\n    \"description\": \"kids baseball for the age 7-16\",\r\n    \"price\": 5,\r\n    \"stock\": 50,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"10/10/2026\",\r\n    \"tags\": [\r\n        \"Sports\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Kids\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/f0b419c1-215d-4193-bd2d-054f0b5b3ca7/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "f0b419c1-215d-4193-bd2d-054f0b5b3ca7",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List",
+              "id": "834838e2-9475-4989-b093-d626dc86441d",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:49834/products/list",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "list"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get",
+              "id": "abf196ee-31c6-49b2-b65b-6d8016d31056",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:49834/products/f0b419c1-215d-4193-bd2d-054f0b5b3ca7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "f0b419c1-215d-4193-bd2d-054f0b5b3ca7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "id": "63fc4a50-6fd7-4d27-b4ae-258d668bb815",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Chess board\",\r\n    \"description\": \"kids board games for ages 7-18\",\r\n    \"price\": 10,\r\n    \"stock\": 50,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"10/10/2026\",\r\n    \"tags\": [\r\n        \"Toys\",\r\n        \"Board Games\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Kids\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/555e5de5-2e36-4d70-bb77-b109e5729363/update",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "555e5de5-2e36-4d70-bb77-b109e5729363",
+                    "update"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "id": "2ab681e6-cf25-41e4-a8af-8f9f155f236a",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Legos\",\r\n    \"description\": \"kids legos for the age 7-10\",\r\n    \"price\": 1,\r\n    \"stock\": 29,\r\n    \"availableFrom\": \"10/10/2025\",\r\n    \"availableTo\": \"10/10/2026\",\r\n    \"tags\": [\r\n        \"Toys\",\r\n        \"Legos\"\r\n    ],\r\n    \"genderTags\" : [\r\n        \"Kids\"\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/71912361-dd46-4151-bd21-baad007efd41/delete",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "71912361-dd46-4151-bd21-baad007efd41",
+                    "delete"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get By Tag",
+              "id": "b237cc73-277b-4ae9-97d4-0e0dd18f1d65",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/products/filter?tag=Clothes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "products",
+                    "filter"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "Clothes"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "3fb54053-cb9d-46c3-9f5d-3c958f5ab732"
+        }
+      ],
+      "id": "eb585e8d-3f00-4883-83eb-a24e40d770a8"
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Initialize",
+          "item": [
+            {
+              "name": "Create",
+              "id": "84c4382b-0f81-4403-a96d-e3264110e25c",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Test St\",\r\n    \"City\" : \"TST\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"34535\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"555e5de5-2e36-4d70-bb77-b109e5729363\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 20\r\n    },\r\n    {\r\n        \"ProductId\" : \"21fec6b9-a206-457f-abf0-a7182e949230\",\r\n        \"Quantity\" : 1,\r\n        \"Price\" : 10\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/63559700-e001-49a5-8196-7f6e7dda19c0/9422740e-6426-4c46-8445-3f5274a62424/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "63559700-e001-49a5-8196-7f6e7dda19c0",
+                    "9422740e-6426-4c46-8445-3f5274a62424",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "abf9cab5-12a0-43bb-b01f-82590b548e45",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Maria St\",\r\n    \"City\" : \"Imepria\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"12344\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"71912361-dd46-4151-bd21-baad007efd41\",\r\n        \"Quantity\" : 5,\r\n        \"Price\" : 5\r\n    },\r\n    {\r\n        \"ProductId\" : \"21fec6b9-a206-457f-abf0-a7182e949230\",\r\n        \"Quantity\" : 1,\r\n        \"Price\" : 10\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/af6e0750-c7ee-4239-a844-582844157fbe/1422740e-6426-4c46-8445-3f5274a62424/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "af6e0750-c7ee-4239-a844-582844157fbe",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "2ed0a24e-38e0-40f1-82cd-3e13f2b1d48c",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Maria St\",\r\n    \"City\" : \"Imepria\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"12344\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"71912361-dd46-4151-bd21-baad007efd41\",\r\n        \"Quantity\" : 5,\r\n        \"Price\" : 5\r\n    },\r\n    {\r\n        \"ProductId\" : \"21fec6b9-a206-457f-abf0-a7182e949231\",\r\n        \"Quantity\" : 1,\r\n        \"Price\" : 10\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/af6e0750-c7ee-4239-a844-582844157fbe/1422740e-6426-4c46-8445-3f5274a62424/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "af6e0750-c7ee-4239-a844-582844157fbe",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "id": "8eca2ef8-1eef-46b9-92cb-65dde70c6363",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Test St\",\r\n    \"City\" : \"TST\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"34535\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"555e5de5-2e36-4d70-bb77-b109e5729363\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 20\r\n    },\r\n    {\r\n        \"ProductId\" : \"21fec6b9-a206-457f-abf0-a7182e949230\",\r\n        \"Quantity\" : 1,\r\n        \"Price\" : 10\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/98a1973e-888e-4921-be8a-255329335e4f/9422740e-6426-4c46-8445-3f5274a62424/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "98a1973e-888e-4921-be8a-255329335e4f",
+                    "9422740e-6426-4c46-8445-3f5274a62424",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "e9a4efb6-6a2c-4bdd-961d-aff3fedcafa7"
+        },
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Create",
+              "id": "e4420c02-ec30-4e9a-8d4b-9aa6f7f4726a",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Test St\",\r\n    \"City\" : \"TST\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"34535\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"555e5de5-2e36-4d70-bb77-b109e5729363\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 20\r\n    },\r\n    {\r\n        \"ProductId\" : \"f0b419c1-215d-4193-bd2d-054f0b5b3ca7\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 10\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/4717e445-9219-42c8-af82-4428a877886f/1422740e-6426-4c46-8445-3f5274a62424/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "4717e445-9219-42c8-af82-4428a877886f",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "id": "00cea8fa-1bea-41e8-bd04-c468dc5dd959",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"ShippingAddress\" : \r\n  {\r\n    \"Street\" : \"Test St\",\r\n    \"City\" : \"TST\",\r\n    \"State\" : \"PA\",\r\n    \"ZipCode\" : \"34535\",\r\n    \"County\" : \"USA\"\r\n  },\r\n  \"Items\" :[\r\n    {\r\n        \"ProductId\" : \"555e5de5-2e36-4d70-bb77-b109e5729363\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 20\r\n    },\r\n    {\r\n        \"ProductId\" : \"f0b419c1-215d-4193-bd2d-054f0b5b3ca7\",\r\n        \"Quantity\" : 2,\r\n        \"Price\" : 10\r\n    },\r\n    {\r\n        \"ProductId\" : \"bc4dc637-87b5-4562-934e-5ccea70ab68b\",\r\n        \"Quantity\" : 1,\r\n        \"Price\" : 100\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/4717e445-9219-42c8-af82-4428a877886f/1422740e-6426-4c46-8445-3f5274a62424/update",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "4717e445-9219-42c8-af82-4428a877886f",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "update"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List",
+              "id": "5cc73a98-9f82-4491-8feb-ba77a614390b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/1422740e-6426-4c46-8445-3f5274a62424/list",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "list"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get",
+              "id": "8d420796-d2f5-4181-86da-e9d88d9efa7c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/4717e445-9219-42c8-af82-4428a877886f",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "4717e445-9219-42c8-af82-4428a877886f"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE",
+              "id": "4df44aaf-ad78-4172-8646-d21cfa3aa92a",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:49834/orders/4717e445-9219-42c8-af82-4428a877886f/1422740e-6426-4c46-8445-3f5274a62424/delete",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "49834",
+                  "path": [
+                    "orders",
+                    "4717e445-9219-42c8-af82-4428a877886f",
+                    "1422740e-6426-4c46-8445-3f5274a62424",
+                    "delete"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "9957b439-7860-42a8-bf3d-68538af9e0c2"
+        }
+      ],
+      "id": "56708577-a511-4599-b7e0-105d5c739653"
+    }
+  ]
+}
